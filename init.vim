@@ -42,6 +42,20 @@ endif
     " No backup, no swapfile, because we have undotree.
     set nobackup
     set noswapfile
+    function! <SID>tdvimrc_strip_spaces()
+        let l = line(".")
+        let c = col(".")
+        %s/\s\+$//e
+        call cursor(l, c)
+    endfunction
+    " Remove trailing whitespaces on buffer save.
+    function! <SID>tdvimrc_strip_spaces()
+        let l = line(".")
+        let c = col(".")
+        %s/\s\+$//e
+        call cursor(l, c)
+    endfunction
+    autocmd BufWritePre * :call <SID>tdvimrc_strip_spaces()
 " }}}
 
 " Packages {{{
@@ -85,6 +99,73 @@ endif
     " All the keybindings start with a whitespace, which is profoundly
     " influenced by the extraordinary Spacemacs.
     let mapleader=' '
+
+    " File keys starting with <leader>f {{{
+        " Search for the files recursively in the current directory.
+        nnoremap <leader>ff :Files<cr>
+        " Search for the files in the git repository.
+        nnoremap <leader>fp :GFiles<cr>
+        " Save the current file.
+        nnoremap <leader>fs :w<cr>
+    " }}}
+
+    " Buffer keys: <leader>b {{{
+        " Switch buffers.
+        nnoremap <leader>bb :Buffers<cr>
+        " Switch to the next buffer.
+        nnoremap <leader>bn :bn<cr>
+        " Switch to the previous buffer.
+        nnoremap <leader>bp :bp<cr>
+        " Kill the current buffer.
+        nnoremap <leader>bd :q<cr>
+    " }}}
+
+    " Window keys: <leader>w {{{
+        " Switching between windows.
+        nnoremap <leader>ww <c-w><c-w>
+        " Move to the window below.
+        nnoremap <leader>wj <c-w><c-j>
+        " Move to the window above.
+        nnoremap <leader>wk <c-w><c-k>
+        " Move to the window left.
+        nnoremap <leader>wh <c-w><c-h>
+        " Move to the window right.
+        nnoremap <leader>wl <c-w><c-l>
+        " Maximize the current window.
+        nnoremap <leader>wm :only<cr>
+        " Delete the current window.
+        nnoremap <leader>wd :hide<cr>
+        " Split the window vertically.
+        nnoremap <leader>wv :vs<cr>
+        " Split the window horizontally.
+        nnoremap <leader>ws :split<cr>
+    " }}}
+
+    " Quickfix keys: <leader>e {{{
+        " Toggle the quickfix window.
+        nnoremap <leader>el :cw<cr>
+        " Go to the next error.
+        nnoremap <leader>en :cn<cr>
+        " Go to the previous error.
+        nnoremap <leader>ep :cp<cr>
+    " }}}
+
+    " Undotree: <leader>u {{{
+        " Command to toggle the undotree.
+        function! <SID>tdvimrc_undotree_focus()
+            UndotreeToggle
+            UndotreeFocus
+        endfunction
+        nnoremap <leader>u :call <SID>tdvimrc_undotree_focus()<CR>
+    " }}}
+
+    " Git keys: <leader>g {{{
+        nnoremap <leader>gs :Gstatus<cr>
+        nnoremap <leader>gc :Gcommit -v<cr>
+        nnoremap <leader>gw :Gwrite<cr>
+        nnoremap <leader>gd :Gdiff<cr>
+        nnoremap <leader>gb :Gblame<cr>
+    " }}}
 " }}}
 
 " Neomake {{{
@@ -95,6 +176,15 @@ endif
 
 " Airline {{{
     let g:airline_theme='sol'
+" }}}
+
+" Undotree {{{
+    " Persist the undo information in the file system.
+    if has('persistent_undo')
+        silent call system('mkdir -p ~/.vim-undo')
+        set undodir=~/.vim-undo
+        set undofile
+    endif
 " }}}
 
 " The custom configurations that will be evaluated at last should be placed
