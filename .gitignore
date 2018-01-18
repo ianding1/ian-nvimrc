@@ -1,0 +1,4 @@
+# Ignore the custom configuration files.
+prologue.vim
+epilogue.vim
+plugins.vim
