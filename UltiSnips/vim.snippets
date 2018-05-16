@@ -1,0 +1,33 @@
+snippet func "function! ... endfunction" b
+function! ${1:name}(${2:args})
+    ${0:" body}
+endfunction
+endsnippet
+
+snippet if "if ...  endif" b
+if ${1:cond}
+    ${0:" true branch}
+endif
+endsnippet
+
+snippet ife "if ... else ... endif" b
+if ${1:cond}
+    ${2:" true branch}
+else
+    ${3:" false branch}
+endif
+$0
+endsnippet
+
+snippet once "if !exists ... endif" b
+if !exists('${1:flag_var}')
+    let $1 = 1
+    ${0:" body}
+endif
+endsnippet
+
+snippet letdef "if !exists ... let ... endif" b
+if !exists('${1:var}')
+    let $1 = ${2:default_value}
+endif
+endsnippet
