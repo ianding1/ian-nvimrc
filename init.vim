@@ -52,6 +52,8 @@ set nocompatible
     let mapleader=' '
     " Enable mouse in terminal mode.
     set mouse=a
+    " Do not show mode in the last line.
+    set noshowmode
 " }}}
 " Plugin list {{{
     " Specify the plugin directory.
@@ -63,12 +65,13 @@ set nocompatible
     Plug 'vim-airline/vim-airline-themes'
     Plug 'neomake/neomake'
     Plug 'ludovicchabant/vim-gutentags'
-    Plug 'Valloric/YouCompleteMe'
-    Plug 'SirVer/ultisnips'
+    Plug 'Valloric/YouCompleteMe', { 'for': ['python', 'vim'] }
+    Plug 'SirVer/ultisnips', { 'for': ['python', 'vim'] }
     Plug 'tpope/vim-fugitive'
     Plug 'mbbill/undotree'
     Plug 'milkypostman/vim-togglelist'
-    Plug 'Yggdroot/LeaderF'
+    Plug 'Yggdroot/LeaderF', { 'on': [ 'LeaderfFile',
+                \ 'LeaderfBuffer', 'LeaderfMru', 'LeaderfHelp' ] }
     Plug 'Vimjas/vim-python-pep8-indent'
     Plug 'mileszs/ack.vim'
 
@@ -128,8 +131,8 @@ set nocompatible
     nnoremap <leader>g :Gstatus<cr>
 " }}}
 " Neomake: an asynchronous syntax checking tool {{{
-    " When reading a buffer (after 1s), and when writing (no delay).
-    call neomake#configure#automake('rw', 1000)
+    " When writing (no delay).
+    call neomake#configure#automake('w')
 " }}}
 " Signify: showing modifications in the sign column {{{
     nnoremap <leader>d :SignifyDiff<cr>
