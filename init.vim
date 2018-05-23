@@ -54,13 +54,17 @@ set nocompatible
     set mouse=a
     " Do not show mode in the last line.
     set noshowmode
+    " Use <ESC> to exit terminal-mode.
+    tnoremap <esc> <c-\><c-n>
+    " Do not wrap lines.
+    set nowrap
 " }}}
 " Plugin list {{{
     " Specify the plugin directory.
     call plug#begin('~/.local/share/nvim/plugged')
 
     Plug 'morhetz/gruvbox'
-    Plug 'mhinz/vim-signify'
+    Plug 'airblade/vim-gitgutter'
     Plug 'vim-airline/vim-airline'
     Plug 'vim-airline/vim-airline-themes'
     Plug 'neomake/neomake'
@@ -74,11 +78,36 @@ set nocompatible
                 \ 'LeaderfBuffer', 'LeaderfMru', 'LeaderfHelp' ] }
     Plug 'Vimjas/vim-python-pep8-indent'
     Plug 'mileszs/ack.vim'
+    Plug 'BurningEther/iron.nvim'
 
+    " Text objects {{{
+    Plug 'kana/vim-textobj-user'
+    Plug 'glts/vim-textobj-comment'
+    Plug 'kana/vim-textobj-entire'
+    Plug 'sgur/vim-textobj-parameter'
+    Plug 'beloglazov/vim-textobj-quotes'
+    Plug 'michaeljsmith/vim-indent-object'
+    " }}}
+
+    " Working on it.
     Plug '~/Projects/vim-coqide'
 
     " Initialize the plugin system.
     call plug#end()
+" }}}
+" Togglelist: {{{
+    " Disable the default key mapping.
+    let g:toggle_list_no_mappings = 1
+
+    " Bind the toggling commands under <leader>t
+    nnoremap <leader>tc :call ToggleQuickFixList()<cr>
+    nnoremap <leader>tl :call ToggleLocationList()<cr>
+
+    " Add some paired motion.
+    nnoremap [c :cprevious<cr>
+    nnoremap ]c :cnext<cr>
+    nnoremap [l :lprevious<cr>
+    nnoremap ]l :lnext<cr>
 " }}}
 " Gruvbox: an orangish color theme {{{
     set background=dark
@@ -97,7 +126,7 @@ set nocompatible
         UndotreeToggle
         UndotreeFocus
     endfunction
-    nnoremap <leader>u :call <SID>tdvimrc_undotree_focus()<CR>
+    nnoremap <leader>tu :call <SID>tdvimrc_undotree_focus()<CR>
 " }}}
 " Airline: pretty status line {{{
     " Don't use powerline symbols.
@@ -121,21 +150,40 @@ set nocompatible
         silent! call mkdir(s:vim_tags, 'p')
     endif
 " }}}
-" AsyncRun: running commands in the background {{{
-    " Open quickfix automatically with height 6.
-    let g:asyncrun_open = 6
-    " The project root directory.
-    let g:asyncrun_rootmarks = ['.svn', '.git', '.root', '_darcs', 'build.xml']
-" }}}
 " Fugitive: essential Git migration {{{
-    nnoremap <leader>g :Gstatus<cr>
+    nnoremap <leader>gs :Gstatus<cr>
+    nnoremap <leader>gw :Gwrite<cr>
+    " Diff all the unstaged files.
+    nnoremap <leader>gd :Git! diff<cr>
+    " Diff all the staged files.
+    nnoremap <leader>gD :Git! diff --staged<cr>
+    " Commit with changes.
+    nnoremap <leader>gc :Gcommit --verbose<cr>
 " }}}
 " Neomake: an asynchronous syntax checking tool {{{
     " When writing (no delay).
     call neomake#configure#automake('w')
 " }}}
-" Signify: showing modifications in the sign column {{{
-    nnoremap <leader>d :SignifyDiff<cr>
+" GitGutter: showing modifications in the sign column {{{
+    " Disable the default key mapping, for it conflicts with
+    " vim-textobj-python on ac/ic.
+    let g:gitgutter_map_keys = 0
+
+    nmap ]h <Plug>GitGutterNextHunk
+    nmap [h <Plug>GitGutterPrevHunk
+
+    omap ih <Plug>GitGutterTextObjectInnerPending
+    omap ah <Plug>GitGutterTextObjectOuterPending
+    xmap ih <Plug>GitGutterTextObjectInnerVisual
+    xmap ah <Plug>GitGutterTextObjectOuterVisual
+
+    " Put the commands under <leader>g.
+    nnoremap <leader>ghs <Plug>GitGutterStageHunk
+    nnoremap <leader>ghu <Plug>GitGutterUndoHunk
+
+    " Toggle GitGutter.
+    nnoremap <leader>tg <Plug>GitGutterToggle
+    nnoremap <leader>tG <Plug>GitGutterLineHighlightsToggle
 " }}}
 " LeaderF: fast fuzzy file finder and etc {{{
     " Do not use unicode separators.
@@ -148,12 +196,6 @@ set nocompatible
     nnoremap <leader>f :LeaderfFile<cr>
     nnoremap <leader>b :LeaderfBuffer<cr>
     nnoremap <leader>r :LeaderfMru<cr>
-    nnoremap <leader>h :LeaderfHelp<cr>
-" }}}
-" ToogleList: toggle quickfix and location list {{{
-    let g:toggle_list_no_mappings = 1
-    nnoremap <leader>e :call ToggleQuickfixList()<cr>
-    nnoremap <leader>l :call ToggleLocationList()<cr>
 " }}}
 " YouCompleteMe: semantic completion framework {{{
     " Trigger the semantic completion after two characters. This is fast only
@@ -184,6 +226,8 @@ set nocompatible
     set completeopt-=preview
     " Do not show the diagnostic highlighting.
     let g:ycm_enable_diagnostic_highlighting = 0
+    " Use Python3 for Python files.
+    let g:ycm_python_binary_path = 'python3'
 " }}}
 " UltiSnips: snippet framework {{{
     " Set the private snippet directory to ~/.config/nvim/UltiSnips
@@ -206,6 +250,15 @@ set nocompatible
     if executable('ag')
       let g:ackprg = 'ag --vimgrep'
     endif
+" }}}
+" Iron.nvim: REPL for Neovim {{{
+    " Split the window vertically.
+    let g:iron_repl_open_cmd = 'vsplit'
+
+    " Bind keys.
+    nnoremap <leader>ii :IronRepl<cr>
+    nnoremap <leader>ip :IronPromptRepl<cr>
+    nnoremap <leader>ic :IronPromptCommand<cr>
 " }}}
 " CoqIDE: A Coq IDE {{{
     let g:coqide_debug = 1
