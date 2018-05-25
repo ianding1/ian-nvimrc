@@ -78,6 +78,7 @@ set nocompatible
     Plug 'mileszs/ack.vim'
     Plug 'mbbill/undotree'
     Plug 'tpope/vim-unimpaired'
+    Plug 'skywind3000/vim-preview'
     " }}}
     " Text Objects {{{
     Plug 'kana/vim-textobj-user'
@@ -154,6 +155,17 @@ set nocompatible
         if executable('ag')
           let g:ackprg = 'ag --vimgrep'
         endif
+
+        " Allow to scroll the preview window without leaving the current
+        " window.
+        noremap <m-u> :PreviewScroll -1<cr>
+        noremap <m-d> :PreviewScroll +1<cr>
+        inoremap <m-u> <c-\><c-o>:PreviewScroll -1<cr>
+        inoremap <m-d> <c-\><c-o>:PreviewScroll +1<cr>
+
+        " Allow to browse the quickfix items in preview.
+        autocmd FileType qf nnoremap <silent><buffer> p :PreviewQuickfix<cr>
+        autocmd FileType qf nnoremap <silent><buffer> P :PreviewClose<cr>
     " }}}
     " Linting {{{
         " Automatically make when writing (no delay).
