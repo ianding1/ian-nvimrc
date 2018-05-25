@@ -77,6 +77,7 @@ set nocompatible
     Plug 'milkypostman/vim-togglelist'
     Plug 'mileszs/ack.vim'
     Plug 'mbbill/undotree'
+    Plug 'tpope/vim-unimpaired'
     " }}}
     " Text Objects {{{
     Plug 'kana/vim-textobj-user'
