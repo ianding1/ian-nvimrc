@@ -181,8 +181,8 @@ set nocompatible
         xmap ih <Plug>GitGutterTextObjectInnerVisual
         xmap ah <Plug>GitGutterTextObjectOuterVisual
 
-        nmap <leader>ghs <Plug>GitGutterStageHunk
-        nmap <leader>ghu <Plug>GitGutterUndoHunk
+        nmap <leader>hs <Plug>GitGutterStageHunk
+        nmap <leader>hu <Plug>GitGutterUndoHunk
 
         nmap <leader>tg <Plug>GitGutterToggle
         nmap <leader>tG <Plug>GitGutterLineHighlightsToggle
