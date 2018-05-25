@@ -81,6 +81,7 @@ set nocompatible
     Plug 'mbbill/undotree'
     Plug 'tpope/vim-unimpaired'
     Plug 'skywind3000/vim-preview'
+    Plug 'brooth/far.vim'
     " }}}
     " Text Objects {{{
     Plug 'kana/vim-textobj-user'
