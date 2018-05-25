@@ -96,6 +96,7 @@ set nocompatible
     " }}}
     " Tagging {{{
     Plug 'ludovicchabant/vim-gutentags'
+    Plug 'skywind3000/gutentags_plus'
     " }}}
     " Auto Completion {{{
     Plug 'Valloric/YouCompleteMe', { 'for': ['python', 'vim'] }
@@ -197,14 +198,28 @@ set nocompatible
         " project directory.
         let s:vim_tags = expand('~/.cache/tags')
         let g:gutentags_cache_dir = s:vim_tags
-        " The options passed to ctags program (we use universal ctags instead).
-        let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
-        let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
-        let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
+        " Enable ctags and gtags-cscope if exists.
+        let g:gutentags_modules = []
+        if executable('ctags')
+            let g:gutentags_modules += ['ctags']
+        endif
+        if executable('gtags-cscope') && executable('gtags')
+            let g:gutentags_modules += ['gtags_cscope']
+        endif
+        " Let gtags use pygments
+        let $GTAGSLABEL = 'native-pygments'
+        let $GTAGSCONF = expand('~/.gtags.conf')
         " Detect and create ~/.cache/tags directory.
         if !isdirectory(s:vim_tags)
             silent! call mkdir(s:vim_tags, 'p')
         endif
+        " The options passed to ctags program (we use universal ctags instead).
+        let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
+        let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
+        let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
+        let g:gutentags_ctags_extra_args += ['--output-format=e-ctags']
+        " Disable gutentags from autoloading gtags database.
+        let g:gutentags_auto_add_gtags_cscope = 0
     " }}}
     " Auto Completion {{{
         " YouCompleteMe {{{
