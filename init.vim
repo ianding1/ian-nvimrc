@@ -181,11 +181,11 @@ set nocompatible
         xmap ih <Plug>GitGutterTextObjectInnerVisual
         xmap ah <Plug>GitGutterTextObjectOuterVisual
 
-        nnoremap <leader>ghs <Plug>GitGutterStageHunk
-        nnoremap <leader>ghu <Plug>GitGutterUndoHunk
+        nmap <leader>ghs <Plug>GitGutterStageHunk
+        nmap <leader>ghu <Plug>GitGutterUndoHunk
 
-        nnoremap <leader>tg <Plug>GitGutterToggle
-        nnoremap <leader>tG <Plug>GitGutterLineHighlightsToggle
+        nmap <leader>tg <Plug>GitGutterToggle
+        nmap <leader>tG <Plug>GitGutterLineHighlightsToggle
     " }}}
     " Tagging {{{
         " The directories containing the following files/directories are
