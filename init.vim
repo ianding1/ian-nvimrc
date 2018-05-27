@@ -102,7 +102,9 @@ set nocompatible
     Plug 'skywind3000/gutentags_plus'
     " }}}
     " Auto Completion {{{
-    Plug 'Valloric/YouCompleteMe', { 'for': ['python', 'vim'] }
+    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    Plug 'zchee/deoplete-jedi'
+    Plug 'Shougo/echodoc.vim'
     " }}}
     " Snippets {{{
     Plug 'SirVer/ultisnips', { 'for': ['python', 'vim'] }
@@ -236,37 +238,19 @@ set nocompatible
         let g:gutentags_auto_add_gtags_cscope = 0
     " }}}
     " Auto Completion {{{
-        " YouCompleteMe {{{
-            " Trigger the semantic completion after two characters.
-            let g:ycm_semantic_triggers =  {
-                        \ 'c,cpp,python,java,go': ['re!\w{2}'],
-                        \ 'cs,lua,javascript': ['re!\w{2}'],
-                        \ }
-            " Enable the semantic completion only for these files.
-            let g:ycm_filetype_whitelist = {
-                        \ "c": 1,
-                        \ "cpp": 1,
-                        \ "python": 1,
-                        \ "java": 1,
-                        \ "go": 1,
-                        \ "cs": 1,
-                        \ "lua": 1,
-                        \ "javascript": 1,
-                        \ "objc": 1,
-                        \ "sh": 1,
-                        \ "zsh": 1,
-                        \ "vim": 1,
-                        \ }
-            " Do not complete in comments and strings.
-            let g:ycm_complete_in_comments = 0
-            let g:ycm_complete_in_strings = 0
-            " Do not show the completion preview.
-            set completeopt-=preview
-            " Do not show the diagnostic highlighting.
-            let g:ycm_enable_diagnostic_highlighting = 0
-            " Use Python3 for Python files.
-            let g:ycm_python_binary_path = 'python3'
-        " }}}
+        " Do not auto show the function signature in preview.
+        set completeopt-=preview
+        " Enable deoplete at startup.
+        let g:deoplete#enable_at_startup = 1
+        " Use Python3 as the completer.
+        let g:deoplete#sources#jedi#python_path = '/usr/local/bin/python3'
+        " Enable echodoc at startup.
+        let g:echodoc#enable_at_startup = 1
+        " Use <tab> to select between the candidates (like in YCM).
+        inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+        inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+        " Don't give ins-completion-menu messages.
+        set shortmess+=c
     " }}}
     " Snippets {{{
         " Set the private snippet directory to ~/.config/nvim/UltiSnips
