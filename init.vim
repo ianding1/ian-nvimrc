@@ -154,6 +154,7 @@ set nocompatible
         nnoremap <leader>f :LeaderfFile<cr>
         nnoremap <leader>b :LeaderfBuffer<cr>
         nnoremap <leader>r :LeaderfMru<cr>
+        nnoremap <leader>F :LeaderfFunction!<cr>
 
         " Use ag in Ack.vim
         if executable('ag')
