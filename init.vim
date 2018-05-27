@@ -273,11 +273,6 @@ set nocompatible
     " REPL {{{
         " Split the window vertically.
         let g:iron_repl_open_cmd = 'vsplit'
-
-        " Bind keys.
-        nnoremap <leader>ii :IronRepl<cr>
-        nnoremap <leader>ip :IronPromptRepl<cr>
-        nnoremap <leader>ic :IronPromptCommand<cr>
     " }}}
     " Coq {{{
         let g:coqide_debug = 1
