@@ -171,6 +171,9 @@ set nocompatible
         " Allow to browse the quickfix items in preview.
         autocmd FileType qf nnoremap <silent><buffer> p :PreviewQuickfix<cr>
         autocmd FileType qf nnoremap <silent><buffer> P :PreviewClose<cr>
+
+        " Use ag in far.vim
+        let g:far#source = 'ag'
     " }}}
     " Linting {{{
         " Automatically make when writing (no delay).
