@@ -74,8 +74,7 @@ set nocompatible
     Plug 'vim-airline/vim-airline-themes'
     " }}}
     " Command Enhancement {{{
-    Plug 'Yggdroot/LeaderF', { 'on': [ 'LeaderfFile',
-                \ 'LeaderfBuffer', 'LeaderfMru', 'LeaderfHelp' ] }
+    Plug 'Yggdroot/LeaderF'
     Plug 'milkypostman/vim-togglelist'
     Plug 'mileszs/ack.vim'
     Plug 'mbbill/undotree'
