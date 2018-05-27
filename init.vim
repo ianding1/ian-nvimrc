@@ -133,15 +133,15 @@ set nocompatible
     " Command Enhancement {{{
         " Bind the toggling commands under <leader>t
         let g:toggle_list_no_mappings = 1
-        nnoremap <leader>tc :call ToggleQuickFixList()<cr>
-        nnoremap <leader>tl :call ToggleLocationList()<cr>
+        nnoremap <leader>c :call ToggleQuickfixList()<cr>
+        nnoremap <leader>l :call ToggleLocationList()<cr>
 
         " Command to toggle the undotree.
         function! <SID>tdvimrc_undotree_focus()
             UndotreeToggle
             UndotreeFocus
         endfunction
-        nnoremap <leader>tu :call <SID>tdvimrc_undotree_focus()<CR>
+        nnoremap <leader>u :call <SID>tdvimrc_undotree_focus()<CR>
 
         " Do not use unicode separators in LeaderF status line.
         let g:Lf_StlSeparator = { 'left': '', 'right': '' }
