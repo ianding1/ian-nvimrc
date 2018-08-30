@@ -102,8 +102,8 @@ set nocompatible
     Plug 'skywind3000/gutentags_plus'
     " }}}
     " Auto Completion {{{
-    Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-    Plug 'zchee/deoplete-jedi'
+    "Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+    "Plug 'zchee/deoplete-jedi'
     Plug 'Shougo/echodoc.vim'
     " }}}
     " Snippets {{{
