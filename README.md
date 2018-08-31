@@ -21,13 +21,11 @@ collect the shortcuts and commands into this cheatsheet for convenience.
 `[N]` means the shortcut works in the Normal mode.  And `[I]` means the
 shortcut works in the Insert mode.
 
------------------
-Shortcut | Mode | Plugin | Usage
------------------
-`<space>` `f` | N | LeaderF | recursively list files
-`<space>` `b` | N | LeaderF | list buffers
-`<space>` `r` | N | LeaderF | list recent files
-`<space>` `F` | N | LeaderF | list functions in this file
------------------
+| Shortcut | Mode | Plugin | Usage |
+| -------- | ---- | ------ | ----- |
+| `<space>` `f` | N | LeaderF | recursively list files |
+| `<space>` `b` | N | LeaderF | list buffers |
+| `<space>` `r` | N | LeaderF | list recent files |
+| `<space>` `F` | N | LeaderF | list functions in this file |
 
 ### Commands
