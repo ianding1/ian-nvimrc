@@ -74,14 +74,14 @@ collect the shortcuts and commands into this cheatsheet for convenience.
 | `:Fardo` | far.vim | Do the replacement |
 | `:IronPromptRepl` | iron.nvim | Prompt the REPL and open it in terminal |
 | `:IronRepl` | iron.nvim | open a REPL of current file type in terminal |
-| `:GscopeFind [0|s] <name>` | gutentags\_plus | Cscope search: symbol |
-| `:GscopeFind [1|g] <name>` | gutentags\_plus | Cscope search: definition |
-| `:GscopeFind [2|d] <name>` | gutentags\_plus | Cscope search: called by this function |
-| `:GscopeFind [3|c] <name>` | gutentags\_plus | Cscope search: calling this function |
-| `:GscopeFind [4|t] <name>` | gutentags\_plus | Cscope search: text string |
-| `:GscopeFind [6|e] <name>` | gutentags\_plus | Cscope search: egrep pattern |
-| `:GscopeFind [7|f] <name>` | gutentags\_plus | Cscope search: file |
-| `:GscopeFind [8|i] <name>` | gutentags\_plus | Cscope search: file #including this file |
-| `:GscopeFind [9|a] <name>` | gutentags\_plus | Cscope search: where this symbol is assigned a value |
+| `:GscopeFind [0\|s] <name>` | gutentags\_plus | Cscope search: symbol |
+| `:GscopeFind [1\|g] <name>` | gutentags\_plus | Cscope search: definition |
+| `:GscopeFind [2\|d] <name>` | gutentags\_plus | Cscope search: called by this function |
+| `:GscopeFind [3\|c] <name>` | gutentags\_plus | Cscope search: calling this function |
+| `:GscopeFind [4\|t] <name>` | gutentags\_plus | Cscope search: text string |
+| `:GscopeFind [6\|e] <name>` | gutentags\_plus | Cscope search: egrep pattern |
+| `:GscopeFind [7\|f] <name>` | gutentags\_plus | Cscope search: file |
+| `:GscopeFind [8\|i] <name>` | gutentags\_plus | Cscope search: file #including this file |
+| `:GscopeFind [9\|a] <name>` | gutentags\_plus | Cscope search: where this symbol is assigned a value |
 
 [1]: `[a` ... means `[a`, `]a`, `[A` and `]A`, and likewise.
