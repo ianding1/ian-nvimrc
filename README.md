@@ -35,7 +35,7 @@ collect the shortcuts and commands into this cheatsheet for convenience.
 | `<alt-u>` | N I | vim-preview | scroll up in preview window |
 | `<alt-d>` | N I | vim-preview | scroll down in preview window |
 | `p` | in quickfix | vim-preview | open the item in preview window |
-| `Q` | in quickfix | vim-preview | close the preview window |
+| `P` | in quickfix | vim-preview | close the preview window |
 | `<ctrl-w>` `z` | N | vim | close the preview window |
 | `[a` ... [1] | N | unimpaired | previous/next/first/last argument |
 | `[b` ... | N | unimpaired | previous/next/first/last buffer |
