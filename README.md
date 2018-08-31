@@ -55,15 +55,15 @@ collect the shortcuts and commands into this cheatsheet for convenience.
 | `<ctrl-w>` `]` | N | vim | jump to the tag in new window |
 | `<ctrl-w>` `}` | N | vim | jump to the tag in preview window |
 | `<ctrl-t>` | N | vim | jump to the previous tag in stack |
-| `<space>` `c` `s` | gutentags\_plus | Cscope search: symbol |
-| `<space>` `c` `g` | gutentags\_plus | Cscope search: definition |
-| `<space>` `c` `d` | gutentags\_plus | Cscope search: called by this function |
-| `<space>` `c` `c` | gutentags\_plus | Cscope search: calling this function |
-| `<space>` `c` `t` | gutentags\_plus | Cscope search: text string |
-| `<space>` `c` `e` | gutentags\_plus | Cscope search: egrep pattern |
-| `<space>` `c` `f` | gutentags\_plus | Cscope search: file |
-| `<space>` `c` `i` | gutentags\_plus | Cscope search: file #including this file |
-| `<space>` `c` `a` | gutentags\_plus | Cscope search: where this symbol is assigned a value |
+| `<space>` `c` `s` | N | gutentags\_plus | Cscope search: symbol |
+| `<space>` `c` `g` | N | gutentags\_plus | Cscope search: definition |
+| `<space>` `c` `d` | N | gutentags\_plus | Cscope search: called by this function |
+| `<space>` `c` `c` | N | gutentags\_plus | Cscope search: calling this function |
+| `<space>` `c` `t` | N | gutentags\_plus | Cscope search: text string |
+| `<space>` `c` `e` | N | gutentags\_plus | Cscope search: egrep pattern |
+| `<space>` `c` `f` | N | gutentags\_plus | Cscope search: file |
+| `<space>` `c` `i` | N | gutentags\_plus | Cscope search: file #including this file |
+| `<space>` `c` `a` | N | gutentags\_plus | Cscope search: where this symbol is assigned a value |
 
 ### Commands
 
