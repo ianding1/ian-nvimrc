@@ -58,9 +58,9 @@ collect the shortcuts and commands into this cheatsheet for convenience.
 | `<c-k>` | I | ultisnips | previous snippet candidate |
 | `<space>` `s` `e` | N | ultisnips | edit the snippet file of this file type|
 | `<space>` `s` `a` | N | ultisnips | add file types |
-| `x` and `X` | far | far.vim | exclude this line / exclude all lines |
-| `i` and `I` | far | far.vim  buffer | add this line / add all lines |
-| `t` and `T` | far | far.vim  buffer | toggle this line / toggle all lines |
+| `x` and `X` | in far | far.vim | exclude this line / exclude all lines |
+| `i` and `I` | in far | far.vim | add this line / add all lines |
+| `t` and `T` | in far | far.vim | toggle this line / toggle all lines |
 | `<ctrl-]>` | N | vim | jump to the tag |
 | `<ctrl-w>` `]` | N | vim | jump to the tag in new window |
 | `<ctrl-w>` `}` | N | vim | jump to the tag in preview window |
