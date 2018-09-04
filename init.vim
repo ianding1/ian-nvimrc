@@ -179,6 +179,7 @@ endif
 
         " Use ag in far.vim
         let g:far#source = 'ag'
+        noremap <silent> <leader>* :Ack!<cr>
     " }}}
     " Linting {{{
         " Automatically make when writing (no delay).
