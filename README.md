@@ -41,7 +41,7 @@ collect the shortcuts and commands into this cheatsheet for convenience.
 | `<space>` `l` | N | vim-togglelist | toggle location window |
 | `<space>` `u` | N | undotree | toggle undo tree |
 | `<space>` `*` | N | ack.vim | ack the word under the cursor |
-| `<ctrl-}>` | N | vim-preview | go to tag in preview window |
+| `<alt-]>` | N | vim-preview | go to tag in preview window |
 | `<alt-u>` | N I | vim-preview | scroll up in preview window |
 | `<alt-d>` | N I | vim-preview | scroll down in preview window |
 | `p` | in quickfix | vim-preview | open the item in preview window |
