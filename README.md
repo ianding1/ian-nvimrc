@@ -16,6 +16,15 @@ Furthermore, this vim configuration requires the following external programs:
 1. universal-ctags: required.
 2. gtags: optional.
 
+This configuration should be used with vim-plugged.
+
+## Customization
+
+The following three files can be created for customization. They are ignored by Git:
+1. ~/.config/nvim/before.local.vim : loaded at the beginning of startup
+2. ~/.config/nvim/plugin.local.vim : extra plugins to use
+3. ~/.config/nvim/after.local.vim : loaded at the end of startup
+
 ## Cheatsheet
 
 Many plugins are bundled in this configuration. Hence it is a good idea to
@@ -28,10 +37,10 @@ collect the shortcuts and commands into this cheatsheet for convenience.
 | `<space>` `f` | N | LeaderF | recursively list files |
 | `<space>` `b` | N | LeaderF | list buffers |
 | `<space>` `r` | N | LeaderF | list recent files |
-| `<space>` `F` | N | LeaderF | list functions in this file |
 | `<space>` `c` | N | vim-togglelist | toggle quickfix window |
 | `<space>` `l` | N | vim-togglelist | toggle location window |
 | `<space>` `u` | N | undotree | toggle undo tree |
+| `<ctrl-}>` | N | vim-preview | go to tag in preview window |
 | `<alt-u>` | N I | vim-preview | scroll up in preview window |
 | `<alt-d>` | N I | vim-preview | scroll down in preview window |
 | `p` | in quickfix | vim-preview | open the item in preview window |
