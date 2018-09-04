@@ -167,7 +167,7 @@ endif
 
         " Allow to scroll the preview window without leaving the current
         " window.
-        noremap <silent> <c-}> :PreviewTag<cr>
+        noremap <silent> <m-]> :PreviewTag<cr>
         noremap <silent> <m-u> :PreviewScroll -1<cr>
         noremap <silent> <m-d> :PreviewScroll +1<cr>
         inoremap <silent> <m-u> <c-\><c-o>:PreviewScroll -1<cr>
