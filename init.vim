@@ -2,6 +2,10 @@
 
 set nocompatible
 
+if filereadable(expand('~/.config/nvim/before.local.vim'))
+    execute 'source '.expand('~/.config/nvim/before.local.vim')
+endif
+
 " Basic settings {{{
     " Trailing whitespace remover {{{
         function! <SID>tdvimrc_strip_spaces()
@@ -115,10 +119,10 @@ set nocompatible
     " Python {{{
     Plug 'Vimjas/vim-python-pep8-indent'
     " }}}
-    " Coq {{{
-    Plug 'thomasding/vim-coqide'
-    " }}}
     " Epilogue {{{
+    if filereadable(expand('~/.config/nvim/plugin.local.vim'))
+        execute 'source '.expand('~/.config/nvim/plugin.local.vim')
+    endif
     call plug#end()
     " }}}
 " }}}
@@ -283,3 +287,7 @@ set nocompatible
         let g:coqide_debug_file = 'coqide_debug.log'
     " }}}
 " }}}
+"
+if filereadable(expand('~/.config/nvim/after.local.vim'))
+    execute 'source '.expand('~/.config/nvim/after.local.vim')
+endif
