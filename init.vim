@@ -163,10 +163,11 @@ set nocompatible
 
         " Allow to scroll the preview window without leaving the current
         " window.
-        noremap <m-u> :PreviewScroll -1<cr>
-        noremap <m-d> :PreviewScroll +1<cr>
-        inoremap <m-u> <c-\><c-o>:PreviewScroll -1<cr>
-        inoremap <m-d> <c-\><c-o>:PreviewScroll +1<cr>
+        noremap <silent> <c-}> :PreviewTag<cr>
+        noremap <silent> <m-u> :PreviewScroll -1<cr>
+        noremap <silent> <m-d> :PreviewScroll +1<cr>
+        inoremap <silent> <m-u> <c-\><c-o>:PreviewScroll -1<cr>
+        inoremap <silent> <m-d> <c-\><c-o>:PreviewScroll +1<cr>
 
         " Allow to browse the quickfix items in preview.
         autocmd FileType qf nnoremap <silent><buffer> p :PreviewQuickfix<cr>
