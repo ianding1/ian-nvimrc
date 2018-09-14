@@ -85,6 +85,7 @@ endif
     Plug 'tpope/vim-unimpaired'
     Plug 'skywind3000/vim-preview'
     Plug 'brooth/far.vim'
+    Plug 'godlygeek/tabular'
     " }}}
     " Text Objects {{{
     Plug 'kana/vim-textobj-user'
@@ -118,6 +119,9 @@ endif
     " }}}
     " Python {{{
     Plug 'Vimjas/vim-python-pep8-indent'
+    " }}}
+    " Haskell {{{
+    Plug 'neovimhaskell/haskell-vim'
     " }}}
     " Epilogue {{{
     if filereadable(expand('~/.config/nvim/plugin.local.vim'))
