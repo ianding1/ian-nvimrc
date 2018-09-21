@@ -121,7 +121,6 @@ endif
     Plug 'Vimjas/vim-python-pep8-indent'
     " }}}
     " Haskell {{{
-    Plug 'neovimhaskell/haskell-vim'
     " }}}
     " Epilogue {{{
     if filereadable(expand('~/.config/nvim/plugin.local.vim'))
