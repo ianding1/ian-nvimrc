@@ -1,4 +1,4 @@
-" vim:foldmethod=marker
+" vim: set foldmethod=marker nofoldenable
 
 set nocompatible
 
@@ -6,6 +6,13 @@ if filereadable(expand('~/.config/nvim/before.local.vim'))
     execute 'source '.expand('~/.config/nvim/before.local.vim')
 endif
 
+" Auxiliary functions and variables {{{
+    function! s:IsUniversalCtags()
+        let ver=system("ctags --version")
+        return match(ver, "universal") != -1
+    endfunction
+    let s:project_root = ['.git', '.root', '.svn', '.hg', '.project']
+" }}}
 " Basic settings {{{
     " Trailing whitespace remover {{{
         function! <SID>tdvimrc_strip_spaces()
@@ -45,58 +52,58 @@ endif
     " No backup, no swapfile, because we have undotree.
     set nobackup
     set noswapfile
-    " Remove trailing whitespaces on saving buffers.
-    autocmd BufWritePre * :call <SID>tdvimrc_strip_spaces()
     " Find tags file recursively up the directory.
     set tags=./.tags;,.tags
     " Set the leader key to space.
     let mapleader=' '
+    " Set the local leader key to backslash.
+    let maplocalleader='\'
     " Enable mouse in terminal mode.
     set mouse=a
     " Do not show mode in the last line.
     set noshowmode
-    " Use <ESC> to exit terminal-mode.
-    tnoremap <esc> <c-\><c-n>
     " Do not wrap lines.
     set nowrap
+    " Show the line number.
+    set number
     " Persist the undo information in the file system.
     if has('persistent_undo')
-        silent call system('mkdir -p ~/.vim-undo')
+        silent call system('mkdir -p ~/.cache/vim-undo')
         set undodir=~/.vim-undo
         set undofile
     endif
     " Split the diff window vertically.
     set diffopt+=vertical
+    " Set the line width to be 80.
+    set textwidth=80
+    " Show a column bar at line 81.
+    set colorcolumn=81
+    " Set the buffer to hidden when switching out
+    set hidden
 " }}}
 " Plugins {{{
     " Prologue {{{
     call plug#begin('~/.local/share/nvim/plugged')
     " }}}
     " UI Enhancement {{{
-    Plug 'morhetz/gruvbox'
+    Plug 'joshdick/onedark.vim'
     Plug 'vim-airline/vim-airline'
-    Plug 'vim-airline/vim-airline-themes'
+    Plug 'scrooloose/nerdtree'
     " }}}
     " Command Enhancement {{{
     Plug 'Yggdroot/LeaderF'
     Plug 'milkypostman/vim-togglelist'
-    Plug 'mileszs/ack.vim'
+    Plug 'wincent/ferret'
     Plug 'mbbill/undotree'
     Plug 'tpope/vim-unimpaired'
     Plug 'skywind3000/vim-preview'
-    Plug 'brooth/far.vim'
-    Plug 'godlygeek/tabular'
-    " }}}
-    " Text Objects {{{
-    Plug 'kana/vim-textobj-user'
-    Plug 'glts/vim-textobj-comment'
-    Plug 'kana/vim-textobj-entire'
-    Plug 'sgur/vim-textobj-parameter'
-    Plug 'beloglazov/vim-textobj-quotes'
-    Plug 'michaeljsmith/vim-indent-object'
+    Plug 'scrooloose/nerdcommenter'
+    Plug 'Raimondi/delimitMate'
+    Plug 'easymotion/vim-easymotion'
+    Plug 'wellle/targets.vim'
     " }}}
     " Linting {{{
-    Plug 'neomake/neomake'
+    Plug 'w0rp/ale'
     " }}}
     " Version Control {{{
     Plug 'tpope/vim-fugitive'
@@ -104,23 +111,27 @@ endif
     " }}}
     " Tagging {{{
     Plug 'ludovicchabant/vim-gutentags'
-    Plug 'skywind3000/gutentags_plus'
     " }}}
     " Auto Completion {{{
-    "Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-    "Plug 'zchee/deoplete-jedi'
     Plug 'Shougo/echodoc.vim'
+    Plug 'Valloric/YouCompleteMe'
+    Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
+    " }}}
+    " Auto Format {{{
+    Plug 'Chiel92/vim-autoformat'
     " }}}
     " Snippets {{{
-    Plug 'SirVer/ultisnips', { 'for': ['python', 'vim'] }
+    Plug 'SirVer/ultisnips'
     " }}}
-    " REPL {{{
-    Plug 'BurningEther/iron.nvim'
+    " C/C++ {{{
+    Plug 'bfrg/vim-cpp-modern'
     " }}}
-    " Python {{{
-    Plug 'Vimjas/vim-python-pep8-indent'
+    " Markdown {{{
+    Plug 'godlygeek/tabular'
+    Plug 'tpope/vim-markdown'
     " }}}
-    " Haskell {{{
+    " Latex {{{
+    Plug 'LaTeX-Box-Team/LaTeX-Box'
     " }}}
     " Epilogue {{{
     if filereadable(expand('~/.config/nvim/plugin.local.vim'))
@@ -133,40 +144,49 @@ endif
     " UI Enhancement {{{
         " Use the dark theme of gruvbox.
         set background=dark
-        colorscheme gruvbox
+        let v:errmsg = ''
+        silent! colorscheme onedark
+        if v:errmsg == ''
+            " Set airline theme to onedark.
+            let g:airline_theme = 'onedark'
+        endif
         " Don't use powerline symbols.
         let g:airline_powerline_fonts = 0
     " }}}
     " Command Enhancement {{{
         " Bind the toggling commands under <leader>t
         let g:toggle_list_no_mappings = 1
-        nnoremap <leader>c :call ToggleQuickfixList()<cr>
-        nnoremap <leader>l :call ToggleLocationList()<cr>
+        nnoremap <silent> <leader>2 :call ToggleQuickfixList()<cr>
+        nnoremap <silent> <leader>3 :call ToggleLocationList()<cr>
 
         " Command to toggle the undotree.
         function! <SID>tdvimrc_undotree_focus()
             UndotreeToggle
             UndotreeFocus
         endfunction
-        nnoremap <leader>u :call <SID>tdvimrc_undotree_focus()<CR>
+
+        noremap <silent> <leader>u :call <SID>tdvimrc_undotree_focus()<cr>
 
         " Do not use unicode separators in LeaderF status line.
         let g:Lf_StlSeparator = { 'left': '', 'right': '' }
         " Use the first ancestor directory that contains these directories and
         " files as the searching root.
-        let g:Lf_RootMarkers = ['.svn', '.git', '.project']
+        let g:Lf_RootMarkers = s:project_root
         let g:Lf_WorkingDirectoryMode = 'Ac'
 
-        " Map leaderf commands.
-        nnoremap <leader>f :LeaderfFile<cr>
-        nnoremap <leader>b :LeaderfBuffer<cr>
-        nnoremap <leader>r :LeaderfMru<cr>
-        nnoremap <leader>F :LeaderfFunction!<cr>
+        " Filter out these directories and files in LeaderF.
+        let g:Lf_WildIgnore = {
+            \ 'dir': ['.svn', '.git', '.hg'],
+            \ 'file': ['*.sw?', '~$*', '*.bak']
+            \}
 
-        " Use ag in Ack.vim
-        if executable('ag')
-          let g:ackprg = 'ag --vimgrep'
-        endif
+        " Map leaderf commands.
+        nnoremap <silent> <leader>f :LeaderfFile<cr>
+        nnoremap <silent> <leader>b :LeaderfBuffer<cr>
+        nnoremap <silent> <leader>j :LeaderfTag<cr>
+
+        " Don't bind ferret commands.
+        let g:FerretMap = 0
 
         " Allow to scroll the preview window without leaving the current
         " window.
@@ -180,64 +200,42 @@ endif
         autocmd FileType qf nnoremap <silent><buffer> p :PreviewQuickfix<cr>
         autocmd FileType qf nnoremap <silent><buffer> P :PreviewClose<cr>
 
-        " Use ag in far.vim
-        let g:far#source = 'ag'
-        noremap <silent> <leader>* :Ack!<cr>
+        " Toggle NERDTree
+        nnoremap <silent> <leader>1 :NERDTreeToggle<cr>
+
+        " Ignore these files in NERDTree
+        let g:NERDTreeIgnore = ['\~$']
+
+        " Autoformat command
+        nnoremap <silent> <leader>q :Autoformat<cr>
+
+        " Expand CR between parentheses
+        let g:delimitMate_expand_cr = 1
     " }}}
     " Linting {{{
-        " Automatically make when writing (no delay).
-        call neomake#configure#automake('w')
-        " Use only pylint as the python makers.
-        let g:neomake_python_enabled_makers = ['pylint']
     " }}}
     " Version Control {{{
         " Bind fugitive key mappings.
         nnoremap <leader>gs :Gstatus<cr>
         nnoremap <leader>gw :Gwrite<cr>
-        nnoremap <leader>gr :Gread<cr>
         nnoremap <leader>gd :Gdiff<cr>
         nnoremap <leader>gc :Gcommit --verbose<cr>
-
-        " Disable the default key mapping, for it conflicts with
-        " vim-textobj-python on ac/ic.
-        let g:gitgutter_map_keys = 0
-
-        " Bind gitgutter key mappings and text objects.
-        nmap ]h <Plug>GitGutterNextHunk
-        nmap [h <Plug>GitGutterPrevHunk
-
-        omap ih <Plug>GitGutterTextObjectInnerPending
-        omap ah <Plug>GitGutterTextObjectOuterPending
-        xmap ih <Plug>GitGutterTextObjectInnerVisual
-        xmap ah <Plug>GitGutterTextObjectOuterVisual
-
-        nmap <leader>hs <Plug>GitGutterStageHunk
-        nmap <leader>hu <Plug>GitGutterUndoHunk
-
-        nmap <leader>tg <Plug>GitGutterToggle
-        nmap <leader>tG <Plug>GitGutterLineHighlightsToggle
     " }}}
     " Tagging {{{
         " The directories containing the following files/directories are
         " considered as the root directory of the project being tagged.
-        let g:gutentags_project_root = ['.git', '.root', '.svn', '.hg', '.project']
+        let g:gutentags_project_root = s:project_root
         " The tags file name to generate.
         let g:gutentags_ctags_tagfile = '.tags'
         " Save all the tag files to ~/.cache/tags in order not to pollute the
         " project directory.
         let s:vim_tags = expand('~/.cache/tags')
         let g:gutentags_cache_dir = s:vim_tags
-        " Enable ctags and gtags-cscope if exists.
+        " Enable ctags if exists.
         let g:gutentags_modules = []
-        if executable('ctags')
+        if executable('ctags') && s:IsUniversalCtags()
             let g:gutentags_modules += ['ctags']
         endif
-        if executable('gtags-cscope') && executable('gtags')
-            let g:gutentags_modules += ['gtags_cscope']
-        endif
-        " Let gtags use pygments
-        let $GTAGSLABEL = 'native-pygments'
-        let $GTAGSCONF = expand('~/.gtags.conf')
         " Detect and create ~/.cache/tags directory.
         if !isdirectory(s:vim_tags)
             silent! call mkdir(s:vim_tags, 'p')
@@ -247,23 +245,20 @@ endif
         let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
         let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
         let g:gutentags_ctags_extra_args += ['--output-format=e-ctags']
-        " Disable gutentags from autoloading gtags database.
-        let g:gutentags_auto_add_gtags_cscope = 0
     " }}}
     " Auto Completion {{{
         " Do not auto show the function signature in preview.
         set completeopt-=preview
-        " Enable deoplete at startup.
-        let g:deoplete#enable_at_startup = 1
-        " Use Python3 as the completer.
-        let g:deoplete#sources#jedi#python_path = '/usr/local/bin/python3'
         " Enable echodoc at startup.
         let g:echodoc#enable_at_startup = 1
-        " Use <tab> to select between the candidates (like in YCM).
-        inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-        inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
         " Don't give ins-completion-menu messages.
         set shortmess+=c
+        " Use Python3 as the interpreter
+        let g:ycm_python_binary_path = '/usr/local/bin/python3'
+        " Disable YCM from autocompletion (don't affect syntactic completion)
+        let g:ycm_min_num_of_chars_for_completion = 99
+        " Enable echodoc
+        let g:echodoc#enable_at_startup = 1
     " }}}
     " Snippets {{{
         " Set the private snippet directory to ~/.config/nvim/UltiSnips
@@ -273,22 +268,16 @@ endif
         " Show the snippet window vertically.
         let g:UltiSnipsEditSplit = "vertical"
 
-        " Bind the snippet commands.
-        nnoremap <leader>se :UltiSnipsEdit<cr>
-        nnoremap <leader>sa :UltiSnipsAddFiletypes<cr>
-
         " Trigger commands.
         let g:UltiSnipsExpandTrigger = '<c-j>'
         let g:UltiSnipsJumpForwardTrigger = '<c-j>'
         let g:UltiSnipsJumpBackwardTrigger = '<c-k>'
     " }}}
-    " REPL {{{
-        " Split the window vertically.
-        let g:iron_repl_open_cmd = 'vsplit'
-    " }}}
-    " Coq {{{
-        let g:coqide_debug = 1
-        let g:coqide_debug_file = 'coqide_debug.log'
+    " OCaml {{{
+        let g:opamshare = substitute(system('opam config var share'),'\n$','','''')
+        if g:opamshare != ''
+            execute "set rtp+=" . g:opamshare . "/merlin/vim"
+        endif
     " }}}
 " }}}
 "
