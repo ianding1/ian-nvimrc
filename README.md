@@ -52,6 +52,6 @@ The following three files can be created for customization.
 |  `:Tabularize /\|` |  Align the Markdown table by '|'                                  |
 |  `:Tabularize /=`  |  Align the assignments by `=`                                     |
 
-[preview]: https://i.ibb.co/pKVyP3v/Screen-Shot-2019-04-11-at-15-34-48.png
+[preview]: https://postimg.cc/kDDZvPYZ
 [vim-plugged]: https://github.com/junegunn/vim-plug
 [uctags]: https://ctags.io
