@@ -1,6 +1,6 @@
 # Ian's Vim Configuration
 
-![Preview][preview]
+[![ianding-nvimrc.png](https://i.postimg.cc/G3jCrcFc/ianding-nvimrc.png)](https://postimg.cc/kDDZvPYZ)
 
 ## Installation
 
@@ -52,6 +52,5 @@ The following three files can be created for customization.
 |  `:Tabularize /\|` |  Align the Markdown table by '|'                                  |
 |  `:Tabularize /=`  |  Align the assignments by `=`                                     |
 
-[preview]: https://postimg.cc/kDDZvPYZ
 [vim-plugged]: https://github.com/junegunn/vim-plug
 [uctags]: https://ctags.io
