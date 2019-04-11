@@ -89,6 +89,7 @@ endif
     Plug 'joshdick/onedark.vim'
     Plug 'vim-airline/vim-airline'
     Plug 'scrooloose/nerdtree'
+    Plug 'Xuyuanp/nerdtree-git-plugin'
     " }}}
     " Command Enhancement {{{
     Plug 'Yggdroot/LeaderF'
