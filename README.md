@@ -22,35 +22,37 @@ The following three files can be created for customization.
 
 ## Cheatsheet
 
-|  Shortcut/Command  |  Usage                                                            |
-|  --------          |  -----                                                            |
-|  `<space>f`        |  find files                                                       |
-|  `<space>b`        |  find buffers                                                     |
-|  `<space>j`        |  find tags                                                        |
-|  `<space>cc`       |  comment the line or selected region                              |
-|  `<space>c<space>` |  toggle the comment of the line or selected region                |
-|  `<space>1`        |  toggle the NERDTree window                                       |
-|  `<space>2`        |  toggle the quickfix window                                       |
-|  `<space>3`        |  toggle the location window                                       |
-|  `<space>u`        |  toggle the UndoTree window                                       |
-|  `<alt-u>`         |  scroll up the preview window                                     |
-|  `<alt-d>`         |  scroll down the preview window                                   |
-|  `p`               |  (Quickfix only) view the item under cursor in the preview window |
-|  `P`               |  (Quickfix only) close the preview window                         |
-|  `<ctrl-w>z`       |  close the preview window                                         |
-|  `[b` `]b`         |  previous/next buffer                                             |
-|  `[l` `]l`         |  previous/next location item                                      |
-|  `[q` `]q`         |  previous/next quickfix item                                      |
-|  `[t` `]t`         |  previous/next tag                                                |
-|  `<c-j>`           |  expand the snippet under cursor/next snippet candidate           |
-|  `<c-k>`           |  previous snippet candidate                                       |
-|  `<ctrl-]>`        |  jump to the tag under cursor                                     |
-|  `<ctrl-w>]`       |  jump to the tag under cursor in a new window                     |
-|  `<ctrl-w>}`       |  jump to the tag under cursor in the preview window               |
-|  `<ctrl-t>`        |  jump to the previous tag in the tag stack                        |
-|  `:Ack [pattern]`  |  Search the pattern in the current directory                      |
-|  `:Tabularize /\|` |  Align the Markdown table by '|'                                  |
-|  `:Tabularize /=`  |  Align the assignments by `=`                                     |
+| Shortcut/Command  | Usage                                                            |
+| --------          | -----                                                            |
+| `<space>f`        | find files                                                       |
+| `<space>b`        | find buffers                                                     |
+| `<space>j`        | find tags                                                        |
+| `<space>cc`       | comment the line or selected region                              |
+| `<space>c<space>` | toggle the comment of the line or selected region                |
+| `<space>1`        | toggle the NERDTree window                                       |
+| `<space>2`        | toggle the quickfix window                                       |
+| `<space>3`        | toggle the location window                                       |
+| `<space>u`        | toggle the UndoTree window                                       |
+| `<alt-u>`         | scroll up the preview window                                     |
+| `<alt-d>`         | scroll down the preview window                                   |
+| `p`               | (Quickfix only) view the item under cursor in the preview window |
+| `P`               | (Quickfix only) close the preview window                         |
+| `<ctrl-w>z`       | close the preview window                                         |
+| `[b` `]b`         | previous/next buffer                                             |
+| `[l` `]l`         | previous/next location item                                      |
+| `[q` `]q`         | previous/next quickfix item                                      |
+| `[t` `]t`         | previous/next tag                                                |
+| `<c-j>`           | expand the snippet under cursor/next snippet candidate           |
+| `<c-k>`           | previous snippet candidate                                       |
+| `<ctrl-]>`        | jump to the tag under cursor                                     |
+| `<ctrl-w>]`       | jump to the tag under cursor in a new window                     |
+| `<ctrl-w>}`       | jump to the tag under cursor in the preview window               |
+| `<ctrl-t>`        | jump to the previous tag in the tag stack                        |
+| `<space>gw`       | stage the current file                                           |
+| `<space>gs`       | show the git status                                              |
+| `<space>gc`       | commit the staged files                                          |
+| `:Ack [pattern]`  | search the pattern in the current directory                      |
+| `:Tab /=`         | align the assignments by `=`                                     |
 
 [vim-plugged]: https://github.com/junegunn/vim-plug
 [uctags]: https://ctags.io
