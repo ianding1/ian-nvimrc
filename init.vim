@@ -199,8 +199,11 @@ endif
         " Ignore these files in NERDTree
         let g:NERDTreeIgnore = ['\~$']
 
-        " Expand CR between parentheses
-        let g:delimitMate_expand_cr = 1
+        " Expand space between parentheses
+        let g:delimitMate_expand_space = 1
+
+        " We also expand CR between parenthese, but it is set in the Language
+        " Server section on the mapping of CR.
 
         " Airline integration
         let g:airline_section_error = 
@@ -232,8 +235,10 @@ endif
 
             " Use <cr> for confirm completion, `<C-g>u` means break undo chain
             " at current position.  Coc only does snippet and additional edit on
-            " confirm.
-            inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+            " confirm. We call delimitMateCR to expand CR if the cursor is 
+            " between parentheses.
+            imap <expr> <cr> pumvisible() ? "\<C-y>" : 
+                        \ "\<C-g>u\<Plug>delimitMateCR"
 
             " Use `[c` and `]c` for navigate diagnostics
             nmap <silent> [c <Plug>(coc-diagnostic-prev)
