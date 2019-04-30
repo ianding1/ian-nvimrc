@@ -199,17 +199,20 @@ endif
         " Ignore these files in NERDTree
         let g:NERDTreeIgnore = ['\~$']
 
-        " Expand space between parentheses
+        " Expand space and returns between parentheses
         let g:delimitMate_expand_space = 1
+        let g:delimitMate_expand_cr = 1
 
         " We also expand CR between parenthese, but it is set in the Language
         " Server section on the mapping of CR.
 
         " Airline integration
-        let g:airline_section_error = 
-            \ '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
-        let g:airline_section_warning = 
-            \ '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
+        if <SID>has_coc_deps()
+            let g:airline_section_error = 
+                \ '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
+            let g:airline_section_warning = 
+                \ '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
+        endif
     " }}}
     " Language Server {{{
         if <SID>has_coc_deps()
