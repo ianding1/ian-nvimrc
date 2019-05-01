@@ -143,8 +143,10 @@ endif
             " Set airline theme to onedark.
             let g:airline_theme = 'onedark'
         endif
-        " Don't use powerline symbols.
-        let g:airline_powerline_fonts = 0
+        " Use powerline symbols.
+        " Install DejaVu Sans Mono for Powerline first.
+        " https://github.com/powerline/fonts/tree/master/DejaVuSansMono
+        let g:airline_powerline_fonts = 1
     " }}}
     " Command Enhancement {{{
         " Bind the toggling commands under <leader>t
