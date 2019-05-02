@@ -162,8 +162,6 @@ endif
 
         noremap <silent> <leader>u :call <SID>tdvimrc_undotree_focus()<cr>
 
-        " Do not use unicode separators in LeaderF status line.
-        let g:Lf_StlSeparator = { 'left': '', 'right': '' }
         " Use the first ancestor directory that contains these directories and
         " files as the searching root.
         let g:Lf_RootMarkers = s:project_root
