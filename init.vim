@@ -6,6 +6,7 @@ call altnvim#EnableExtensions([
       \ 'onedark',
       \ 'basic',
       \ 'git',
+      \ 'asyncrun',
       \ 'coc',
       \ 'haskell',
       \ 'markdown',
