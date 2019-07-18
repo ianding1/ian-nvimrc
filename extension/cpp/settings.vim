@@ -5,14 +5,8 @@ augroup altnvim_cpp
   autocmd BufNewFile,BufReadPre *.c,*.cpp setlocal sw=2 sts=2
 augroup END
 
-if altnvim#IsExtensionEnabled('leaderf')
-  call extend(g:Lf_WildIgnore['file'], ['*.[od]'])
-endif
-
-if altnvim#IsExtensionEnabled('nerdtree')
-  call extend(g:NERDTreeIgnore, ['\.[od]$'])
-endif
-
+call extend(g:Lf_WildIgnore['file'], ['*.[od]'])
+call extend(g:NERDTreeIgnore, ['\.[od]$'])
 
 if executable('ccls')
   call altnvim#LoadCocSettings(expand('<sfile>:p:h'))
