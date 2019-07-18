@@ -33,6 +33,25 @@ function! altnvim#IsExtensionEnabled(extension) abort
 endfunction
 
 
+function! altnvim#DisableExtensions(extensions) abort
+  let extensions_to_be_removed = {}
+
+  for extension in a:extensions
+    let extensions_to_be_removed[extension] = 1
+  endfor
+
+  let new_enabled_extensions = []
+
+  for extension in s:enabled_extensions
+    if !has_key(extensions_to_be_removed, extension)
+      call add(new_enabled_extensions, extension)
+    endif
+  endfor
+
+  let s:enabled_extensions = new_enabled_extensions
+endfunction
+
+
 function! altnvim#DeepExtend(target, source) abort
   if type(a:target) == v:t_list && type(a:source) == v:t_list
     call extend(a:target, a:source)
