@@ -34,12 +34,7 @@ inoremap <silent><expr> <c-space> coc#refresh()
 " at current position.  Coc only does snippet and additional edit on
 " confirm. We call delimitMateCR to expand CR if the cursor is
 " between parentheses.
-if altnvim#IsExtensionEnabled('enhancement')
-  imap <expr> <cr> pumvisible() ? "\<C-y>" :
-        \ "\<C-g>u\<Plug>delimitMateCR"
-else
-  inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-endif
+imap <expr> <cr> pumvisible() ? "\<C-y>" : \ "\<C-g>u\<Plug>delimitMateCR"
 
 " Use `[c` and `]c` for navigate diagnostics
 nmap <silent> [c <Plug>(coc-diagnostic-prev)
