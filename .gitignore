@@ -1,3 +1,2 @@
 .netrwhist
-*.local.vim
-coc-settings.json
+local/
