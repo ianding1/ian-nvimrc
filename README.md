@@ -13,3 +13,7 @@ nvim +PluginInstall +qa
 
 1. Extension **cpp** needs **ccls** to be installed in your system. MacOS users can install **ccls** with `brew install ccls`.
 2. Extension **bash** needs **bash-language-server** to be installed in your system. Install with `npm i -g bash-language-server`.
+
+## Issues
+
+1. **bash-language-server** cannot be installed under NodeJS 12.x on MacOS. Install an earlier version of NodeJS (like 8.x) solves the problem.
