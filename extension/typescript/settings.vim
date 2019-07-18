@@ -6,4 +6,4 @@ augroup altnvim_typescript
   autocmd!
   autocmd BufNewFile,BufRead *.tsx set filetype=typescript.tsx
   autocmd FileType typescript,typescript.tsx setlocal sw=2 sts=2 cc=121
-endgroup
+augroup END
