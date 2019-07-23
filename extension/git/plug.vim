@@ -1,2 +1,2 @@
 Plug 'tpope/vim-fugitive'
-Plug 'mhinz/vim-signify'
+Plug 'airblade/vim-gitgutter'
