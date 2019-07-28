@@ -26,7 +26,6 @@ set wildmode=longest,list,full
 set ignorecase
 set smartcase
 set incsearch
-set hlsearch
 
 " Make backspace full functional.
 set backspace=2
