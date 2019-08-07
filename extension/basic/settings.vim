@@ -9,6 +9,9 @@ nnoremap <silent> <leader>1 :NERDTreeToggle<cr>
 " Ignore these files in NERDTree
 let g:NERDTreeIgnore = ['\~$']
 
+" Default with of 31 is too narrow in practice.
+let g:NERDTreeWinSize = 40
+
 " Bind the toggling commands under <leader>t
 let g:toggle_list_no_mappings = 1
 nnoremap <silent> <leader>2 :call ToggleQuickfixList()<cr>
