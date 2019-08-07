@@ -25,6 +25,13 @@ nnoremap <silent> <leader>u :call <SID>tdvimrc_undotree_focus()<cr>
 " Don't bind ferret commands.
 let g:FerretMap = 0
 
+" Don't mess up quickfix settings.
+let g:FerretQFOptions = 0
+
+" Bind Ferret commands.
+nmap <leader>/ <Plug>(FerretAck)
+nmap <leader>* <Plug>(FerretAckWord)
+
 " Allow to scroll the preview window without leaving the current
 " window.
 noremap <silent> <m-]> :PreviewTag<cr>
