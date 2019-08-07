@@ -64,8 +64,8 @@ set linebreak
 " Preserve line indentation on line break
 set breakindent
 
-" Show > at the beginning of the continuation
-let &showbreak='> '
+" Show +++ at the beginning of the continuation
+let &showbreak='+++ '
 
 " Show the line number.
 set number
