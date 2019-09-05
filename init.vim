@@ -15,6 +15,8 @@ call altnvim#EnableExtensions([
       \ 'ocaml',
       \ 'vimscript',
       \ 'typescript',
+      \ 'tex',
+      \ 'sml',
       \ ])
 
 let &runtimepath.=','.escape(expand('<sfile>:p:h') . '/local', '\,')
