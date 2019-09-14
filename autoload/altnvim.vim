@@ -52,32 +52,17 @@ function! altnvim#DisableExtensions(extensions) abort
 endfunction
 
 
-function! altnvim#DeepExtend(target, source) abort
-  if type(a:target) == v:t_list && type(a:source) == v:t_list
-    call extend(a:target, a:source)
-  elseif type(a:target) == v:t_dict && type(a:source) == v:t_dict
-    for key in keys(a:source)
-      if has_key(a:target, key)
-        if index([v:t_list, v:t_dict], type(a:target[key])) != -1
-          call s:DeepExtend(a:target[key], a:source[key])
-        else
-          let a:target[key] = a:source[key]
-        endif
-      else
-        let a:target[key] = a:source[key]
-      endif
-    endfor
-  else
-    throw 'Unsupported types'
-  endif
-endfunction
-
-
 function! altnvim#LoadCocSettings(extension_dir) abort
   let coc_settings_path = a:extension_dir . '/coc-settings.json'
-  let coc_settings = json_decode(readfile(coc_settings_path, 'b'))
+  let coc_settings = json_decode(join(readfile(coc_settings_path), "\n"))
 
   for key in keys(coc_settings)
-    call coc#config(key, coc_settings[key])
+    if key ==# 'languageserver'
+      for ls in keys(coc_settings[key])
+        let g:coc_user_config[key][ls] = coc_settings[key][ls]
+      endfor
+    else
+      let g:coc_user_config[key] = coc_settings[key]
+    endif
   endfor
 endfunction

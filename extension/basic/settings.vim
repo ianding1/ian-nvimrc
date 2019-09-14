@@ -66,3 +66,11 @@ let g:Lf_WildIgnore = {
 nnoremap <silent> <leader>f :LeaderfFile<cr>
 nnoremap <silent> <leader>b :LeaderfBuffer<cr>
 nnoremap <silent> <leader>] :LeaderfTag<cr>
+
+" GUI font
+if has('gui_running')
+  " Remove right scrollbar
+  set guioptions-=rRlLTb
+  " Use a powerline font
+  set guifont=DejaVuSansMonoPowerline:h12
+endif

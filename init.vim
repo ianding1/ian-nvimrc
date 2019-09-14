@@ -1,6 +1,12 @@
 " vim: sw=2 sts=2
 
+unlet! skip_defaults_vim
 set nocompatible
+
+let &runtimepath.=','.escape(expand('~/.altnvim'), '\,')
+let &runtimepath.=','.escape(expand('~/.altnvim/local'), '\,')
+
+let g:coc_user_config = {'languageserver': {}}
 
 call altnvim#EnableExtensions([
       \ 'onedark',
@@ -11,15 +17,14 @@ call altnvim#EnableExtensions([
       \ 'haskell',
       \ 'markdown',
       \ 'cpp',
-      \ 'python',
       \ 'ocaml',
+      \ 'python',
       \ 'vimscript',
       \ 'typescript',
       \ 'tex',
       \ 'sml',
       \ ])
 
-let &runtimepath.=','.escape(expand('<sfile>:p:h') . '/local', '\,')
 runtime localinit.vim
 
 call altnvim#LoadExtensions()
