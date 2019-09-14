@@ -69,8 +69,14 @@ nnoremap <silent> <leader>] :LeaderfTag<cr>
 
 " GUI font
 if has('gui_running')
-  " Remove right scrollbar
-  set guioptions-=rRlLTb
+  " Remove scrollbars and toolbars
+  set guioptions-=r
+  set guioptions-=R
+  set guioptions-=l
+  set guioptions-=L
+  set guioptions-=T
+  set guioptions-=b
+
   " Use a powerline font
   set guifont=DejaVuSansMonoPowerline:h12
 endif
