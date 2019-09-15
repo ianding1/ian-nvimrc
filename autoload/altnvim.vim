@@ -11,19 +11,19 @@ endfunction
 function! altnvim#LoadExtensions() abort
 
   for extension in s:enabled_extensions
-    execute 'runtime extension/' . extension . '/init.vim'
+    execute 'runtime extension/' . extension . '.init.vim'
   endfor
 
   call plug#begin('~/.local/share/nvim/plugged')
 
   for extension in s:enabled_extensions
-    execute 'runtime extension/' . extension . '/plug.vim'
+    execute 'runtime extension/' . extension . '.plug.vim'
   endfor
 
   call plug#end()
 
   for extension in s:enabled_extensions
-    execute 'runtime extension/' . extension . '/settings.vim'
+    execute 'runtime extension/' . extension . '.settings.vim'
   endfor
 endfunction
 
@@ -52,8 +52,8 @@ function! altnvim#DisableExtensions(extensions) abort
 endfunction
 
 
-function! altnvim#LoadCocSettings(extension_dir) abort
-  let coc_settings_path = a:extension_dir . '/coc-settings.json'
+function! altnvim#LoadCocSettings(extension_path_prefix) abort
+  let coc_settings_path = a:extension_path_prefix . '.coc-settings.json'
   let coc_settings = json_decode(join(readfile(coc_settings_path), "\n"))
 
   for key in keys(coc_settings)

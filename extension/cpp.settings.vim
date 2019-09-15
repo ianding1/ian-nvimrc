@@ -9,7 +9,7 @@ call extend(g:Lf_WildIgnore['file'], ['*.[od]'])
 call extend(g:NERDTreeIgnore, ['\.[od]$'])
 
 if executable('ccls')
-  call altnvim#LoadCocSettings(expand('<sfile>:p:h'))
+  call altnvim#LoadCocSettings(expand('<sfile>:r:r'))
 else
   echomsg 'ccls not found'
 endif

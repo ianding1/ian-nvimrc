@@ -5,7 +5,7 @@ if altnvim#IsExtensionEnabled('nerdtree')
 endif
 
 if executable('ocaml-language-server')
-  call altnvim#LoadCocSettings(expand('<sfile>:p:h'))
+  call altnvim#LoadCocSettings(expand('<sfile>:r:r'))
 else
   echomsg 'ocaml-language-server not found'
 endif
