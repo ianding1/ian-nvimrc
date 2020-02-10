@@ -33,6 +33,10 @@ set backspace=2
 " Use true colors.
 set termguicolors
 
+" Use grey background for popups.
+highlight Pmenu ctermfg=NONE ctermbg=grey cterm=NONE
+      \ guifg=NONE guibg=grey gui=NONE
+
 " No backup, no swapfile, because we have undotree.
 set nobackup
 set nowritebackup
