@@ -4,7 +4,17 @@ let s:enabled_extensions = []
 
 
 function! altnvim#EnableExtensions(extensions) abort
-  call extend(s:enabled_extensions, a:extensions)
+  let extension_map = {}
+  for extension in s:enabled_extensions
+    let extension_map[extension] = 1
+  endfor
+
+  for extension in a:extensions
+    if !has_key(extension_map, extension)
+      let extension_map[extension] = 1
+      call add(s:enabled_extensions, extension)
+    endif
+  endfor
 endfunction
 
 
