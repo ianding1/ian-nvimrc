@@ -26,7 +26,6 @@ set wildmode=longest,list,full
 set ignorecase
 set smartcase
 set incsearch
-set nohlsearch
 
 " Make backspace full functional.
 set backspace=2
@@ -54,18 +53,6 @@ set mouse=a
 
 " Do not show mode in the last line.
 set noshowmode
-
-" Wrap lines.
-set wrap
-
-" Break at word boundary if allowing wrapping lines
-set linebreak
-
-" Preserve line indentation on line break
-set breakindent
-
-" Show +++ at the beginning of the continuation
-let &showbreak='+++ '
 
 " Show the line number.
 set number
