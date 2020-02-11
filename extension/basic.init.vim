@@ -4,6 +4,7 @@
 let $LANG='en'
 set langmenu=en
 set encoding=utf-8
+set printencoding
 
 " Use UTF-8 and GBK, sequentially, as the encodings of files.
 set fileencodings=utf-8,gbk
@@ -33,9 +34,10 @@ set backspace=2
 " Use true colors.
 set termguicolors
 
-" Use grey background for popups.
-highlight Pmenu ctermfg=NONE ctermbg=grey cterm=NONE
-      \ guifg=NONE guibg=grey gui=NONE
+" Set popup background to transparency.
+highlight Pmenu ctermfg=NONE ctermbg=NONE cterm=NONE
+      \ guifg=NONE guibg=NONE gui=NONE
+
 
 " No backup, no swapfile, because we have undotree.
 set nobackup
