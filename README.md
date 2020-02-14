@@ -1,19 +1,37 @@
-# Alt-Neovim Configuration
+# Alt-Nvim Configuration
 
 [![ianding-nvimrc.png](https://i.postimg.cc/G3jCrcFc/ianding-nvimrc.png)](https://postimg.cc/kDDZvPYZ)
 
 ## Installation
 
-```
+### Prerequisites
+
+This vim configuration requires the following software to be installed in your
+system:
+
+- Python.
+- NodeJS.
+- pynvim (python module).
+- vim-plugged (vim plugin). [Homepage](https://github.com/junegunn/vim-plug)
+- Powerline patched fonts. [Homepage](https://github.com/powerline/fonts)
+
+### Clone this repository
+
+```sh
 git clone https://github.com/ianding1/ian-nvimrc.git ~/.config/nvim
+cp ~/.config/nvim/altnvim/config.default.vim ~/.config/nvim/altnvim/config.vim
 nvim +PluginInstall +qa
 ```
+## Customization File
 
-### Notes
+```sh
+vim ~/.config/nvim/altnvim/config.vim
+```
 
-1. Extension **cpp** needs **ccls** to be installed in your system. MacOS users can install **ccls** with `brew install ccls`.
-2. Extension **bash** needs **bash-language-server** to be installed in your system. Install with `npm i -g bash-language-server`.
+## Local extension directory
 
-## Issues
+The files in this directory is not tracked by Git.
 
-1. **bash-language-server** cannot be installed under NodeJS 12.x on MacOS. Install an earlier version of NodeJS (like 8.x) solves the problem.
+```sh
+cd ~/.config/nvim/altnvim/lext
+```

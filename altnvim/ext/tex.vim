@@ -2,7 +2,7 @@
 
 let s:coc_config =
       \ {
-      \ "latex.build.onSave": true
+      \ "latex.build.onSave": v:true
       \ }
 
 call altnvim#Use({

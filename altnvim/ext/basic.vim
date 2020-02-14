@@ -36,10 +36,10 @@ function! s:Init() abort
   set tags=./.tags;,.tags
 
   " Set the leader key to the space key.
-  let mapleader=' '
+  let g:mapleader=' '
 
   " Set the local leader key to the backslash key.
-  let maplocalleader='\'
+  let g:maplocalleader='\'
 
   " Enable mouse in the terminal. This requires the terminal to support mouse.
   set mouse=a
@@ -99,7 +99,7 @@ function! s:Plugin() abort
 endfunction
 
 function! s:Settings() abort
-  " Use powerline symbols.
+  " Use unicode characters in airline.
   let g:airline_powerline_fonts = 1
 
   " Toggle NERDTree.
@@ -161,6 +161,9 @@ function! s:Settings() abort
     set guioptions-=T
     set guioptions-=b
   endif
+
+  " Add health check command.
+  command! AltnvimCheckHealth call altnvim#CheckHealth()
 endfunction
 
 call altnvim#Use({

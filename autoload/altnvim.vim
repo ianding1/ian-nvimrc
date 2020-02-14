@@ -87,7 +87,7 @@ function! altnvim#Use(ext) abort
   endif
 
   for ext_key in keys(a:ext)
-    if index(['name', 'init', 'settings', 'plugins', 'coc_config',
+    if index(['name', 'init', 'settings', 'plugin', 'coc_config',
           \ 'check_health', 'coc_extensions'], ext_key) == -1
       throw 'Invalid extension key:' . ext_key
     endif
@@ -100,7 +100,7 @@ function! altnvim#Use(ext) abort
     endif
   endfor
 
-  call add(s:used_exts, ext)
+  call add(s:used_exts, a:ext)
 endfunction
 
 let s:loaded = 0
