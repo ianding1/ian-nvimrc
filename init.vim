@@ -3,28 +3,26 @@
 unlet! skip_defaults_vim
 set nocompatible
 
-let &runtimepath.=','.escape(expand('~/.altnvim'), '\,')
-let &runtimepath.=','.escape(expand('~/.altnvim/local'), '\,')
-
-let g:coc_user_config = {'languageserver': {}}
-
-call altnvim#EnableExtensions([
-      \ 'onedark',
+let g:altnvim_extensions = [
       \ 'basic',
+      \ 'onedark',
       \ 'git',
-      \ 'asyncrun',
-      \ 'coc',
-      \ 'haskell',
       \ 'markdown',
+      \ 'coc',
       \ 'cpp',
       \ 'ocaml',
       \ 'python',
-      \ 'vimscript',
-      \ 'typescript',
       \ 'tex',
-      \ 'sml',
-      \ ])
+      \ 'typescript',
+      \ 'vimscript',
+      \ ]
+
+command! AltnvimCheckHealth call altnvim#CheckHealth()
 
 runtime localinit.vim
 
-call altnvim#LoadExtensions()
+for ext_name in g:altnvim_extensions
+    execute 'runtime extension/' . ext_name . '.vim'
+endfor
+
+call altnvim#Load()

@@ -76,3 +76,105 @@ function! altnvim#LoadCocSettings(extension_path_prefix) abort
     endif
   endfor
 endfunction
+
+
+let s:used_exts = []
+
+function! altnvim#Use(ext) abort
+  " Check if the extension is valid.
+  if !has_key(a:ext, 'name')
+    throw 'Missing extension name'
+  endif
+
+  for ext_key in keys(a:ext)
+    if index(['name', 'init', 'settings', 'plugins', 'coc_config',
+          \ 'check_health', 'coc_extensions'], ext_key) == -1
+      throw 'Invalid extension key:' . ext_key
+    endif
+  endfor
+
+  " Return immediately if the extension is already used.
+  for used_ext in s:used_exts
+    if a:ext['name'] ==# used_ext['name']
+      return
+    endif
+  endfor
+
+  call add(s:used_exts, ext)
+endfunction
+
+let s:loaded = 0
+let g:altnvim_has_coc = 0
+
+function! altnvim#Load() abort
+  " Return immediately if already loaded.
+  if s:loaded
+    return
+  endif
+  let s:loaded = 1
+
+  " Execute the initialization functions.
+  for ext in s:used_exts
+    if has_key(ext, 'init')
+      call ext['init']()
+    endif
+  endfor
+
+  " Register the plugins.
+  call plug#begin('~/.local/share/nvim/plugged')
+  for ext in s:used_exts
+    if has_key(ext, 'plugin')
+      call ext['plugin']()
+    endif
+  endfor
+  call plug#end()
+
+  " Execute the setting functions.
+  for ext in s:used_exts
+    if has_key(ext, 'settings')
+      call ext['settings']()
+    endif
+  endfor
+
+  " Set up the coc.nvim configuration.
+  if g:altnvim_has_coc
+    let g:coc_user_config = {'languageserver': {}}
+    let g:coc_global_extensions = []
+
+    for ext in s:used_exts
+      if has_key(ext, 'coc_extensions')
+        call extend(g:coc_global_extensions, ext['coc_extensions'])
+      endif
+
+      if has_key(ext, 'coc_config')
+        let coc_config = ext['coc_config']
+        for key in keys(coc_config)
+          if key ==# 'languageserver'
+            call extend(g:coc_user_config['languageserver'],
+                  \ coc_config['languageserver'])
+          else
+            let g:coc_user_config[key] = coc_config[key]
+          endif
+        endfor
+      endif
+    endfor
+  endif
+endfunction
+
+function! altnvim#CheckHealth() abort
+  tabnew
+  setlocal buftype=nofile
+  setlocal filetype=markdown
+  call append(line('0'), '# check health')
+  call append(line('$'), ['## enabled extensions', ''])
+  for ext in s:used_exts
+    call append(line('$'), '- ' . ext['name'])
+  endfor
+
+  call append(line('$'), ['', '## extension availability', ''])
+  for ext in s:used_exts
+    if has_key(ext, 'check_health')
+      call ext['check_health']()
+    endif
+  endfor
+endfunction
