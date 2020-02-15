@@ -93,9 +93,11 @@ function! s:Plugin() abort
   Plug 'milkypostman/vim-togglelist'
   Plug 'Raimondi/delimitMate'
   Plug 'wellle/targets.vim'
+  Plug 'tpope/vim-surround'
   Plug 'scrooloose/nerdcommenter'
   Plug 'mbbill/undotree'
   Plug 'Yggdroot/LeaderF'
+  Plug 'wincent/ferret'
 endfunction
 
 function! s:Settings() abort
@@ -151,6 +153,9 @@ function! s:Settings() abort
     call winrestview(save)
   endfunction
   command! TrimSpaces call <SID>TrimSpaces()
+
+  " Don't map Ferret commands.
+  let g:FerretMap = 0
 
   if has('gui_running')
     " Remove scrollbars and toolbars in GUI.
