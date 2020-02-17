@@ -63,7 +63,7 @@ function! s:Init() abort
   " Set the text width to 80 and highlight column 81.
   set textwidth=80
   set colorcolumn=81
-  
+
   " Don't wrap lines.
   set nowrap
 
