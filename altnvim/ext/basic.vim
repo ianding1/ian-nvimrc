@@ -127,6 +127,9 @@ function! s:Settings() abort
   " The default width (31) is too narrow. Set it to 40.
   let g:NERDTreeWinSize = 40
 
+  " Hide the help message.
+  let g:NERDTreeMinimalUI = 1
+
   " Toggle the quickfix and location window.
   let g:toggle_list_no_mappings = 1
   nnoremap <silent> <leader>2 :call ToggleQuickfixList()<cr>
