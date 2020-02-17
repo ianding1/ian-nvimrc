@@ -87,6 +87,14 @@ function! s:Init() abort
   nnoremap <silent> <c-j> <c-w>j
   nnoremap <silent> <c-k> <c-w>k
   nnoremap <silent> <c-l> <c-w>l
+
+  " Use Emacs-like key mapping in Command mode.
+  cmap <c-a> <Home>
+  cmap <c-e> <End>
+  cmap <c-f> <Right>
+  cmap <c-b> <Left>
+  cmap <c-n> <Down>
+  cmap <c-p> <Up>
 endfunction
 
 function! s:Plugin() abort
@@ -106,6 +114,9 @@ endfunction
 function! s:Settings() abort
   " Use unicode characters in airline.
   let g:airline_powerline_fonts = 1
+
+  " Disable word count in airline.
+  let g:airline#extensions#wordcount#enabled = 0
 
   " Toggle NERDTree.
   nnoremap <silent> <leader>1 :NERDTreeToggle<cr>
