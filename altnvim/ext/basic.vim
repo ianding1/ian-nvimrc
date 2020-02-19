@@ -150,8 +150,9 @@ function! s:Settings() abort
               \ }
 
   " Map Leaderf commands.
-  nnoremap <silent> <leader>f :LeaderfFile<cr>
-  nnoremap <silent> <leader>b :LeaderfBuffer<cr>
+  nnoremap <silent> <leader>ff :LeaderfFile<cr>
+  nnoremap <silent> <leader>fb :LeaderfBuffer<cr>
+  nnoremap <silent> <leader>ft :LeaderfTag<cr>
 
   " Remove trailing spaces.
   function! <SID>TrimSpaces() abort
