@@ -13,7 +13,7 @@ function! s:Init() abort
 
   " Complete Vim commands.
   set wildmenu
-  set wildmode=longest,list,full
+  set wildmode=full
 
   " Enable case-insensitive incremental search and highlighting.
   set ignorecase
