@@ -1,6 +1,8 @@
 " vim: sw=2 sts=2
 
 runtime altnvim/ext/basic.vim
+runtime altnvim/ext/brackets.vim
+runtime altnvim/ext/airline.vim
 runtime altnvim/ext/onedark.vim
 runtime altnvim/ext/git.vim
 runtime altnvim/ext/markdown.vim
