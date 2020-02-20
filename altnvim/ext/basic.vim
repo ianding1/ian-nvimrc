@@ -138,6 +138,13 @@ function! s:Settings() abort
   " Expand "(|)" to "(\n|\n)" when typing a "\n".
   let g:delimitMate_expand_cr = 1
 
+  " Handle triple quotes properly. Pressing ' repeatedly will insert:
+  " |
+  " '|'
+  " ''|
+  " '''|'''
+  let g:delimitMate_nesting_quotes = ['"','`', "'"]
+
   " Find the first ancestor directory that contains these directories and/or
   " files as the Leaderf root.
   let g:Lf_RootMarkers = ['.git', '.svn', '.hg', '.root', '.project']
