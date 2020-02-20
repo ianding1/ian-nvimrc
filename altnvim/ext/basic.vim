@@ -15,10 +15,9 @@ function! s:Init() abort
   set wildmenu
   set wildmode=full
 
-  " Enable case-insensitive incremental search and highlighting.
-  set ignorecase
-  set smartcase
+  " Enable incremental search and highlight matches.
   set incsearch
+  set hlsearch
 
   " Make backspace full functional.
   set backspace=2
