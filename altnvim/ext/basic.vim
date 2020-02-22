@@ -134,6 +134,9 @@ function! s:Settings() abort
   endfunction
   nnoremap <silent> <leader>u :call <SID>ToggleUndoTree()<cr>
 
+  " Show the undotree window on the right.
+  let g:undotree_WindowLayout = 3
+
   " Expand "(|)" to "( | )" when typing a space.
   let g:delimitMate_expand_space = 1
 
