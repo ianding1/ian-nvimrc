@@ -119,6 +119,9 @@ function! s:Settings() abort
   " Hide the help message.
   let g:NERDTreeMinimalUI = 1
 
+  " Show NERDTree on the right.
+  let g:NERDTreeWinPos = 'right'
+
   " Toggle the quickfix and location window.
   let g:toggle_list_no_mappings = 1
   nnoremap <silent> <leader>2 :call ToggleQuickfixList()<cr>
