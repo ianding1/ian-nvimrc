@@ -13,3 +13,4 @@ runtime altnvim/ext/python.vim
 runtime altnvim/ext/tex.vim
 runtime altnvim/ext/typescript.vim
 runtime altnvim/ext/vimscript.vim
+runtime altnvim/ext/boxdraw.vim
