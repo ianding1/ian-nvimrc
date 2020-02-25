@@ -5,6 +5,11 @@ function! s:Plugin() abort
 endfunction
 
 function! s:Settings() abort
+  " Enable virtual editing
+  nnoremap +e :<c-u>set virtualedit=all
+
+  " Disable virtual editing
+  nnoremap +d :<c-u>set virtualedit=
 endfunction
 
 call altnvim#Use({
