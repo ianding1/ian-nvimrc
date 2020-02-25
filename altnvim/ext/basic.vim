@@ -127,6 +127,9 @@ function! s:Settings() abort
   nnoremap <silent> <leader>2 :call ToggleQuickfixList()<cr>
   nnoremap <silent> <leader>3 :call ToggleLocationList()<cr>
 
+  " Toggle search highlighting
+  nnoremap <silent> <leader>4 :<c-u>set hlsearch!<cr>
+
   " Toggle the undotree.
   function! <SID>ToggleUndoTree()
       UndotreeToggle
