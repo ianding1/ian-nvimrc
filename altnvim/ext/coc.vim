@@ -45,10 +45,15 @@ function! s:Settings() abort
   " Use <c-space> for trigger completion.
   inoremap <silent><expr> <c-space> coc#refresh()
 
-  " Use <cr> to confirm completion, `<C-g>u` means break undo chain at current
-  " position.  Coc only does snippet and additional edit on confirm. Must use
-  " imap instead of inoremap to map <Plug>delimitMateCR to the correct command.
-  imap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<Plug>delimitMateCR"
+  " Use <cr> to confirm completion. If a completion candidate is selected,
+  " perform the completion confirmation. Otherwise, perform the original <cr>.
+  " DelimitMate binds its CR command to <cr> only if <cr> is not bound (which is
+  " not the case here). So we must manually bind <cr> to DelimitMate's CR
+  " command.
+  imap <expr> <cr>
+        \   pumvisible() && complete_info(['selected'])['selected'] != -1
+        \ ? "\<C-y>"
+        \ : "\<C-g>u\<Plug>delimitMateCR"
 
   " Use `[c` and `]c` for navigate diagnostics
   nmap <silent> [c <Plug>(coc-diagnostic-prev)
